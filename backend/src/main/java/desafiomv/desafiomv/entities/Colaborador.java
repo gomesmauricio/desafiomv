@@ -2,6 +2,7 @@ package desafiomv.desafiomv.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -17,9 +18,8 @@ public class Colaborador implements Serializable {
 	
 	@Id
 	private String cpf;
-	
 	private String nome;
-	
+	@Column(unique = true)
 	private String opcao;
 	
 

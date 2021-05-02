@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import desafiomv.desafiomv.dto.ColaboradorDTO;
+import desafiomv.desafiomv.dto.MessageResponseDTO;
 import desafiomv.desafiomv.entities.Colaborador;
 import desafiomv.desafiomv.repositories.ColaboradorRepository;
 
@@ -21,6 +22,15 @@ public class ColaboradorService {
 	public List<ColaboradorDTO> findAll() {
 		List<Colaborador> list = repository.findAllByOrderByNomeAsc();
 		return list.stream().map(x -> new ColaboradorDTO(x)).collect(Collectors.toList());
+	}
+	
+	public MessageResponseDTO insertColaborador(Colaborador colaborador) {
+		Colaborador savedColaborador = repository.save(colaborador);
+		return MessageResponseDTO
+				.builder()
+				.message("Colaborador: " + savedColaborador.getNome() + " Cadastrado com Sucesso! "+ savedColaborador.getOpcao() )
+				.build();
+		
 	}
 
 }
